@@ -63,8 +63,36 @@ const getPerms = s => {
     }
 }
 
+const isPerm = s => {
+    s = s.replace(/\s/g, '')
+    const cs = {}
+
+    for (let c of s) {
+        cs[c] = !cs[c]
+    }
+
+    console.log(cs)
+
+    let foundOdd = false
+    for (let v of Object.keys(cs)) {
+        if (cs[v] && foundOdd) return false
+        if (cs[v]) foundOdd = true
+    }
+    return true
+}
+
 console.log([
-    'aabbccd',
-    'abad b'
-]
-    .map(getPerms))
+        'aabbccd',
+        'abad b',
+        'abc'
+    ]
+    .map(getPerms)
+)
+
+console.log([
+        'aabbccd',
+        'abad b',
+        'abc'
+    ]
+    .map(isPerm)
+)
